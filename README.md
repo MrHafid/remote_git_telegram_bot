@@ -1,4 +1,4 @@
-### Remote Git Pull from group telegram with bot with python
+# A Project of Remote Git from Telegram Bot
 
-## Git Pull
-# New feature git pull from remote message bot in group
+### Git Pull
+New feature git pull from remote message bot in group
