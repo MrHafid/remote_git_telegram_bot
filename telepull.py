@@ -5,9 +5,9 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Masukkan token bot dari BotFather
-TOKEN = '7127400318:AAG2P5AQrSy1UstU212ZmEaUQGpTmtzRMXg'
+TOKEN = '****'
 
-ALLOWED_USERS = [7150361385, 880939368]  # Ganti dengan ID Telegram pengguna yang diizinkan
+ALLOWED_USERS = [123123123, 123123123]  # Ganti dengan ID Telegram pengguna yang diizinkan
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('Hai aku Printsoft Bot, aku ada untuk kebutuhan remote git, terimakasih!')
@@ -18,9 +18,9 @@ async def litepull(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         # Cek nama grup atau supergrup
         group_name = update.message.chat.title
         
-        if group_name == 'Liteprint':
+        if group_name == 'group name':
             # Gunakan subprocess untuk menjalankan perintah git pull
-            process = subprocess.Popen('cd /Applications/XAMPP/xamppfiles/htdocs/liteprint && git pull', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = subprocess.Popen('cd Path && git pull', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     
             # Tunggu hingga proses selesai
             stdout, stderr = process.communicate()
