@@ -3,18 +3,18 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Masukkan token bot dari BotFather
-TOKEN = '7127400318:AAG2P5AQrSy1UstU212ZmEaUQGpTmtzRMXg'
+TOKEN = '******'
 
-ALLOWED_USERS = [7150361385, 880939368]  # Ganti dengan ID Telegram pengguna yang diizinkan
+ALLOWED_USERS = [123123, 123123]  # Ganti dengan ID Telegram pengguna yang diizinkan
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('Hai aku Printsoft Bot, aku ada untuk kebutuhan remote git, terimakasih!')
+    await update.message.reply_text('Hai aku Bot, aku ada untuk kebutuhan remote git, terimakasih!')
 
 async def litepull(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Hanya tanggapi pesan dari admin grup atau pengguna yang diizinkan
     if update.message.chat.type in ['group', 'supergroup'] and update.message.from_user.id in ALLOWED_USERS:
         # Jalankan perintah git pull di direktori proyek kamu
-        os.system('cd /Applications/XAMPP/xamppfiles/htdocs/liteprint && git pull')
+        os.system('cd path && git pull')
         await update.message.reply_text('Git pull berhasil dijalankan!')
     else:
         await update.message.reply_text('Kamu tidak memiliki izin untuk menjalankan perintah ini.')
