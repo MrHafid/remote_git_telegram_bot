@@ -10,7 +10,7 @@ TOKEN = '****'
 ALLOWED_USERS = [123123123, 123123123]  # Ganti dengan ID Telegram pengguna yang diizinkan
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('Hai aku Printsoft Bot, aku ada untuk kebutuhan remote git, terimakasih!')
+    await update.message.reply_text('Hai aku Bot, aku ada untuk kebutuhan remote git, terimakasih!')
 
 async def litepull(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Hanya tanggapi pesan dari admin grup atau pengguna yang diizinkan
