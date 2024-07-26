@@ -19,6 +19,7 @@ async def litepull(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         group_name = update.message.chat.title
         
         if group_name == 'group name':
+            await update.message.reply_text('Mohon ditunggu...');
             # Gunakan subprocess untuk menjalankan perintah git pull
             process = subprocess.Popen('cd Path && git pull', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     
