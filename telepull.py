@@ -10,21 +10,36 @@ TOKEN = '****'
 ALLOWED_USERS = [123123123, 123123123]  # Ganti dengan ID Telegram pengguna yang diizinkan
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('Hai aku Bot, aku ada untuk kebutuhan remote git, terimakasih!')
+    group_name = update.message.chat.title if update.message.chat.title else "Group Name"
+    await update.message.reply_text(f'Hai aku Printsoft Bot dibuat oleh Hafid, aku ada untuk kebutuhan remote git {group_name}, terimakasih!')
 
 async def litepull(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Hanya tanggapi pesan dari admin grup atau pengguna yang diizinkan
     if update.message.chat.type in ['group', 'supergroup'] and update.message.from_user.id in ALLOWED_USERS:
         # Cek nama grup atau supergrup
-        group_name = update.message.chat.title
+        group_name = update.message.chat.title if update.message.chat.title else "Group Name"
         
-        if group_name == 'group name':
-            await update.message.reply_text('Mohon ditunggu...');
+        if group_name == 'Liteprint':
+            await update.message.reply_text(f'{group_name} Memproses, Mohon ditunggu...')
             # Gunakan subprocess untuk menjalankan perintah git pull
-            process = subprocess.Popen('cd Path && git pull', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = subprocess.Popen('cd /Applications/XAMPP/xamppfiles/htdocs/liteprint && git pull', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     
             # Tunggu hingga proses selesai
             stdout, stderr = process.communicate()
+
+            # Ambil output dari stdout dan stderr
+            output = stdout.decode('utf-8') + '\n' + stderr.decode('utf-8')
+
+            # Kirim output ke chat
+            await update.message.reply_text(f'Output Git Pull {group_name}:\n \n{output}\n ')
+
+        elif group_name == 'LMS':
+            await update.message.reply_text(f'{group_name} Memproses, Mohon ditunggu...')
+            # Gunakan subprocess untuk menjalankan perintah git pull
+            lms = subprocess.Popen('cd /Applications/XAMPP/xamppfiles/htdocs/lms && git pull', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    
+            # Tunggu hingga proses selesai
+            stdout, stderr = lms.communicate()
 
             # Ambil output dari stdout dan stderr
             output = stdout.decode('utf-8') + '\n' + stderr.decode('utf-8')
@@ -44,10 +59,13 @@ def main() -> None:
     application = Application.builder().token(TOKEN).build()
 
     # Tambahkan handler untuk perintah /start
-    application.add_handler(CommandHandler('litestart', start))
+    application.add_handler(CommandHandler('start', start))
 
     # Tambahkan handler untuk perintah /pull
     application.add_handler(CommandHandler('litepull', litepull))
+
+    # Tambahkan handler untuk perintah /pull
+    application.add_handler(CommandHandler('lmspull', litepull))
 
     # Jalankan polling untuk menerima pesan
     application.run_polling()
